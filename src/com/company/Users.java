@@ -11,7 +11,7 @@ public  class Users{
 
     Users(String responseBody){
         this.users = new JSONArray(responseBody);
-        for(int i = 0;i<users.length();i++){
+        for(int i = 0;i<this.users.length();i++){
             this.uzytkownik = users.getJSONObject(i);
             this.id = uzytkownik.getInt("id");
             this.username = uzytkownik.getString("username");
@@ -34,13 +34,13 @@ public  class Users{
             this.bs = company.getString("bs");
 
 
-            System.out.println(id+" "+name+" "+username+" "+email+" "+phone+" "+website+" "+street+" "+suite+" "+city+" "+zipcode );
+           // System.out.println(id+" "+name+" "+username+" "+email+" "+phone+" "+website+" "+street+" "+suite+" "+city+" "+zipcode );
 
 
 
 
         }
-
+       // System.out.println(users.getJSONObject(3));
 
     }
 

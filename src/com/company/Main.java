@@ -1,6 +1,7 @@
 package com.company;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import sun.net.www.http.HttpClient;
 
@@ -10,6 +11,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
 
 
 public class Main {
@@ -19,10 +21,11 @@ public class Main {
 
     public static void main(String[] args) {
         //METHOD: java.net.HttpURLConnection
-        Users parse;
-        Posts parse_post;
+        HashMap<Integer,Integer> mapa = new HashMap<>();
+        Users parse = null;
+        Posts parse_post = null;
         BufferedReader reader;
-        String line,line2;
+        String line, line2;
 
         StringBuffer responseContent = new StringBuffer();
         StringBuffer responseContent2 = new StringBuffer();
@@ -50,13 +53,12 @@ public class Main {
             } else {
                 reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 while ((line = reader.readLine()) != null) {
-                   //System.out.println(line);
+                    //System.out.println(line);
                     responseContent.append(line + "\n");
                 }
                 reader.close();
             }
             parse = new Users(responseContent.toString());
-
 
 
         } catch (MalformedURLException e) {
@@ -97,7 +99,6 @@ public class Main {
             parse_post = new Posts(responseContent2.toString());
 
 
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -105,10 +106,17 @@ public class Main {
         } finally {
             connection2.disconnect();
         }
+        try{
+            Connection c= new Connection(parse,parse_post);
+
+
+        }catch (JSONException e)
+        {
+            e.printStackTrace();
+        }
+        System.out.println(parse_post.posts.getJSONObject(99)+"\n");
 
 
         }
-
     }
-
 

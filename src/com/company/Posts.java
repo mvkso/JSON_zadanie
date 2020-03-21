@@ -19,11 +19,11 @@ public class Posts{
             this.body = posty.getString("body");
 
 
-            System.out.println(userId + " " + id + "\n" + title +"\n"+ body +"\n");
+           // System.out.println(userId + " " + id + "\n" + title +"\n"+ body +"\n");
 
 
         }
-
+        //System.out.println(posts.getJSONObject(3));
 
     }
 }
