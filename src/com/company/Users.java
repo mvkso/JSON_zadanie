@@ -3,31 +3,35 @@ package com.company;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public  class Users extends Main{
+public  class Users{
+    int id;
+    String username,name,email,phone,website,street,suite,city,zipcode,lat,lng,c_name,catchPhrase,bs;
+    JSONObject company,adress,geo,uzytkownik;
+    JSONArray users;
 
     Users(String responseBody){
-        JSONArray users = new JSONArray(responseBody);
+        this.users = new JSONArray(responseBody);
         for(int i = 0;i<users.length();i++){
-            JSONObject uzytkownik = users.getJSONObject(i);
-            int id = uzytkownik.getInt("id");
-            String username = uzytkownik.getString("username");
-            String name = uzytkownik.getString("name");
+            this.uzytkownik = users.getJSONObject(i);
+            this.id = uzytkownik.getInt("id");
+            this.username = uzytkownik.getString("username");
+            this.name = uzytkownik.getString("name");
 
-            String email = uzytkownik.getString("email");
-            String phone = uzytkownik.getString("phone");
-            String website = uzytkownik.getString("website");
-            JSONObject adress = uzytkownik.getJSONObject("address");
-            String street = adress.getString("street");
-            String suite = adress.getString("suite");
-            String city = adress.getString("city");
-            String zipcode = adress.getString("zipcode");
-            JSONObject geo = adress.getJSONObject("geo");
-            String lat = geo.getString("lng");
-            String lng = geo.getString("lng");
-            JSONObject company = uzytkownik.getJSONObject("company");
-            String c_name = company.getString("name");
-            String catchPhrase = company.getString("catchPhrase");
-            String bs = company.getString("bs");
+            this.email = uzytkownik.getString("email");
+            this.phone = uzytkownik.getString("phone");
+            this.website = uzytkownik.getString("website");
+            this.adress = uzytkownik.getJSONObject("address");
+            this.street = adress.getString("street");
+            this.suite = adress.getString("suite");
+            this.city = adress.getString("city");
+            this.zipcode = adress.getString("zipcode");
+            this.geo = adress.getJSONObject("geo");
+            this.lat = geo.getString("lng");
+            this.lng = geo.getString("lng");
+            this.company = uzytkownik.getJSONObject("company");
+            this.c_name = company.getString("name");
+            this.catchPhrase = company.getString("catchPhrase");
+            this.bs = company.getString("bs");
 
 
             System.out.println(id+" "+name+" "+username+" "+email+" "+phone+" "+website+" "+street+" "+suite+" "+city+" "+zipcode );

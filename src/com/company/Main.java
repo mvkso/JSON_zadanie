@@ -15,15 +15,25 @@ import java.net.URL;
 public class Main {
 
     private static HttpURLConnection connection;
+    private static HttpURLConnection connection2;
 
     public static void main(String[] args) {
-        //METHOD 1: java.net.HttpURLConnection
+        //METHOD: java.net.HttpURLConnection
+        Users parse;
+        Posts parse_post;
         BufferedReader reader;
-        String line;
+        String line,line2;
+
         StringBuffer responseContent = new StringBuffer();
+        StringBuffer responseContent2 = new StringBuffer();
+
+        ////////POSTS
+
+
         try {
             URL url = new URL("https://jsonplaceholder.typicode.com/users");
             connection = (HttpURLConnection) url.openConnection();
+
 
             //Request setup
             connection.setRequestMethod("GET");
@@ -40,12 +50,13 @@ public class Main {
             } else {
                 reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 while ((line = reader.readLine()) != null) {
-                    System.out.println(line);
+                   //System.out.println(line);
                     responseContent.append(line + "\n");
                 }
                 reader.close();
             }
-            Users parse = new Users(responseContent.toString());
+            parse = new Users(responseContent.toString());
+
 
 
         } catch (MalformedURLException e) {
@@ -55,6 +66,49 @@ public class Main {
         } finally {
             connection.disconnect();
         }
+
+        ////////////////////POSTS
+
+        try {
+            URL url = new URL("https://jsonplaceholder.typicode.com/posts");
+            connection2 = (HttpURLConnection) url.openConnection();
+
+
+            //Request setup
+            connection2.setRequestMethod("GET");
+            connection2.setConnectTimeout(5000);
+            connection2.setReadTimeout(5000);
+
+            int status = connection2.getResponseCode();
+            // System.out.println(status );
+            if (status > 299) {
+                reader = new BufferedReader(new InputStreamReader(connection2.getErrorStream()));
+                while ((line2 = reader.readLine()) != null) {
+                    responseContent2.append(line2);
+                }
+            } else {
+                reader = new BufferedReader(new InputStreamReader(connection2.getInputStream()));
+                while ((line2 = reader.readLine()) != null) {
+                    //System.out.println(line2);
+                    responseContent2.append(line2 + "\n");
+                }
+                reader.close();
+            }
+            parse_post = new Posts(responseContent2.toString());
+
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            connection2.disconnect();
+        }
+
+
+        }
+
     }
 
-}
+
