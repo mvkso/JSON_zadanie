@@ -24,6 +24,7 @@ public class Main {
         HashMap<Integer,Integer> mapa = new HashMap<>();
         Users parse = null;
         Posts parse_post = null;
+        Connection c = null;
         BufferedReader reader;
         String line, line2;
 
@@ -107,14 +108,15 @@ public class Main {
             connection2.disconnect();
         }
         try{
-            Connection c= new Connection(parse,parse_post);
+            c= new Connection(parse,parse_post);
 
 
         }catch (JSONException e)
         {
             e.printStackTrace();
         }
-        System.out.println(parse_post.posts.getJSONObject(99)+"\n");
+       // System.out.println(parse_post.posts.getJSONObject(99)+"\n");
+       c.non_uniq();
 
 
         }
