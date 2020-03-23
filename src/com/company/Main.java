@@ -119,6 +119,7 @@ public class Main {
        // System.out.println(parse_post.posts.getJSONObject(99)+"\n");
        c.user_list();
         c.non_uniq();
+        parse.distance();
 
 
         }

@@ -6,11 +6,17 @@ import org.json.JSONObject;
 import javax.swing.*;
 import java.util.*;
 
+
+import java.lang.Math;
+
 public class Connection {
     String name,title;
     int userId,same_count=0;
+
+    double length,lat,lng;
     JSONArray user;
     JSONObject temp;
+
     Map<String, Integer> user_count = new HashMap<>();
     Map<String, Integer> tytuly = new HashMap<>();
     Map<String, Integer> tytuly_repeat = new HashMap<>();
@@ -54,11 +60,13 @@ public class Connection {
             List<String> temp1= new ArrayList<>(user_count.keySet());
             List<Integer> temp2= new ArrayList<>(user_count.values());
         for(int a=0;a<this.userId;a++){
-        this.lista.add(a, String.format("%s napisal(a) %d postow",temp1.get(a),temp2.get(a)));
+        this.lista.add(a, String.format("%s napisal(a) %d postow \n",temp1.get(a),temp2.get(a)));
 
         }
-            System.out.println("LISTA: "+this.lista);
+            System.out.println("LIST: "+this.lista);
         return (List<String>) this.lista;
         }
+
+
 
 }
