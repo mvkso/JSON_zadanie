@@ -1,5 +1,6 @@
 package com.company;
 
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -116,7 +117,8 @@ public class Main {
             e.printStackTrace();
         }
        // System.out.println(parse_post.posts.getJSONObject(99)+"\n");
-       c.non_uniq();
+       c.user_list();
+        c.non_uniq();
 
 
         }

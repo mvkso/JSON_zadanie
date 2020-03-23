@@ -4,17 +4,19 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.swing.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Connection {
     String name,title;
     int userId,same_count=0;
-JSONArray user;
-JSONObject temp;
-    Map<String, Integer> user_count = new HashMap<String,Integer>();
-    Map<String, Integer> tytuly = new HashMap<String,Integer>();
-    Map<String, Integer> tytuly_repeat = new HashMap<String,Integer>();
+    JSONArray user;
+    JSONObject temp;
+    Map<String, Integer> user_count = new HashMap<>();
+    Map<String, Integer> tytuly = new HashMap<>();
+    Map<String, Integer> tytuly_repeat = new HashMap<>();
+    List<String> lista = new ArrayList<>();
+
+
     Connection(Users u,Posts p){
         for(int i=0; i< p.posts.length();i++){
             JSONObject posty= p.posts.getJSONObject(i);
@@ -46,6 +48,17 @@ JSONObject temp;
         HashMap<String,Integer> non_uniq(){
             System.out.println(String.format("Nieunikalnych tematow: %d",this.same_count));
 
-        return (HashMap<String, Integer>) tytuly_repeat;
+        return (HashMap<String, Integer>) this.tytuly_repeat;
     }
+        List<String> user_list(){
+            List<String> temp1= new ArrayList<>(user_count.keySet());
+            List<Integer> temp2= new ArrayList<>(user_count.values());
+        for(int a=0;a<this.userId;a++){
+        this.lista.add(a, String.format("%s napisal(a) %d postow",temp1.get(a),temp2.get(a)));
+
+        }
+            System.out.println("LISTA: "+this.lista);
+        return (List<String>) this.lista;
+        }
+
 }
