@@ -110,6 +110,8 @@ public class Main {
         }
         try{
             c= new Connection(parse,parse_post);
+            System.out.println("Pojedyncze drukowanie w klasie Main polaczonych danych o postach i odpowiednich userach: \n"+parse_post.posts+"\n");
+
 
 
         }catch (JSONException e)

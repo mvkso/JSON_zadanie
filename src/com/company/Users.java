@@ -54,7 +54,7 @@ public  class Users{
         double dis,temp=0;
         int min=1;
         for(int i=0;i<this.temp;i++){
-            System.out.println("\t\t EVERY DISTANCE FOR TESTING "+i+"\n");
+            System.out.println("\t\t EVERY DISTANCE FOR TESTING FOR USER "+(i+1)+"\n");
             for(int j=0;j<this.temp;j++){
                 if(j!=i){
 
@@ -67,7 +67,7 @@ public  class Users{
                                         }
                     }
                 }
-            System.out.println("\t\t END OF A TESTING\n\nFINAL DISTANCE:");
+            System.out.println("\t\t END OF A TESTING DISTANCE FOR USER "+(i+1)+"\n\nFINAL DISTANCE:");
             System.out.println(String.format("User %s : closest user is %s, distance: %f \n\n",this.lista_name.get(i),lista_name.get(min-1),temp));
             temp=0;
             }

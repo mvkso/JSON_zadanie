@@ -30,6 +30,7 @@ public class Connection {
             p.posts.getJSONObject(i).append("Users",u.users.getJSONObject(userId-1));
             posty= p.posts.getJSONObject(i);
 
+
             this.title = posty.getString("title");
 
             this.user= posty.getJSONArray("Users");
@@ -38,7 +39,7 @@ public class Connection {
                 this.name=temp.getString("name");
             }
 
-
+            System.out.println("\nDrukowanie zlaczonych juz danych danego postu z odpowiednim userem: \n"+p.posts.getJSONObject(i)+"\n");
             if(this.tytuly.containsKey(this.title)){
                 this.tytuly.put(this.title,this.tytuly.get(this.title)+1);
                 this.same_count+=1;
@@ -52,7 +53,8 @@ public class Connection {
        //Z System.out.println(this.user_count);
     }
         HashMap<String,Integer> non_uniq(){
-            System.out.println(String.format("Nieunikalnych tematow: %d",this.same_count));
+            System.out.println("\nHashmapa nieunikalnych tematow postow: "+tytuly_repeat+"\n");
+            System.out.println(String.format("Nieunikalnych tematow: %d\n",this.same_count));
 
         return (HashMap<String, Integer>) this.tytuly_repeat;
     }
@@ -63,7 +65,7 @@ public class Connection {
         this.lista.add(a, String.format("%s napisal(a) %d postow \n",temp1.get(a),temp2.get(a)));
 
         }
-            System.out.println("LIST: "+this.lista);
+            System.out.println("LIST OF USERS AND NUMBER OF WRITTEN POSTS: \n"+this.lista);
         return (List<String>) this.lista;
         }
 
