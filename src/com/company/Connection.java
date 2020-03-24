@@ -15,7 +15,7 @@ public class Connection {
 
     double length,lat,lng;
     JSONArray user;
-    JSONObject temp;
+    JSONObject temp,address;
 
     Map<String, Integer> user_count = new HashMap<>();
     Map<String, Integer> tytuly = new HashMap<>();
@@ -24,6 +24,7 @@ public class Connection {
 
 
     Connection(Users u,Posts p){
+        System.out.println("Drukowanie zlaczonych juz danych danego postu z odpowiednim userem: ");
         for(int i=0; i< p.posts.length();i++){
             JSONObject posty= p.posts.getJSONObject(i);
             this.userId = posty.getInt("userId");
@@ -37,9 +38,15 @@ public class Connection {
             for(int a=0;a<user.length();a++) {
                 this.temp = user.getJSONObject(a);
                 this.name=temp.getString("name");
+                this.address=temp.getJSONObject("address");
+
             }
 
-            System.out.println("\nDrukowanie zlaczonych juz danych danego postu z odpowiednim userem: \n"+p.posts.getJSONObject(i)+"\n");
+            System.out.println("\n"+p.posts.getJSONObject(i));
+            System.out.println("ID zadania: "+posty.getInt("id")+" ,UserID: "
+                    +this.userId+" ,Imie i nazwisko: "+temp.getString("name")+" ,Tytul: "+this.title+ " ,Strona: "
+                    +temp.getString("website")+" ,adres: "+this.address+"\n");
+
             if(this.tytuly.containsKey(this.title)){
                 this.tytuly.put(this.title,this.tytuly.get(this.title)+1);
                 this.same_count+=1;

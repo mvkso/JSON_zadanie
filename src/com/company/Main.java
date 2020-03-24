@@ -61,6 +61,7 @@ public class Main {
                 reader.close();
             }
             parse = new Users(responseContent.toString());
+            System.out.println("TEST -> pobrano dane o uzytkownikach: "+parse.users+"\n");
 
 
         } catch (MalformedURLException e) {
@@ -99,6 +100,7 @@ public class Main {
                 reader.close();
             }
             parse_post = new Posts(responseContent2.toString());
+            System.out.println("\nTEST -> pobrano dane o postach: "+parse_post.posts+"\n\n");
 
 
         } catch (MalformedURLException e) {
